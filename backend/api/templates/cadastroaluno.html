@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load rest_framework %}
+
+{% block dashboard %}  
+    <h2>Cadastrar de aluno </h2> 
+    <form method="post" enctype="multipart/form-data" class='form-control'>  
+        {% csrf_token %}  
+        {% render_form serializer %}  
+        <br>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>  
+    </form>
+{% endblock %}  
+    

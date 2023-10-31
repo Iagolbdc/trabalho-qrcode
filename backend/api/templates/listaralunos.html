@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block dashboard %}
+  <h1>Lista de Alunos</h1> 
+    {% for aluno in alunos %}
+    <br>
+<ul class="user-list">
+<main>
+    <li class = 'aluno'>
+      <img src="{{ aluno.foto.url }}" height="150px"  alt="Foto de Perfil" class='foto'>
+      <img src="{{ aluno.qrcode.url }}" height="150px"  alt="Foto de Perfil" class='foto'>
+      {{ aluno.nome }}  {{ aluno.sobrenome }} idade : {{ aluno.idade }} anos
+      <a href="{%url 'update' aluno.id %}" class='btn btn-success'>Editar</a>
+
+      <form method="post" action="{%url 'deletar' aluno.id %}" style="display:inline;" >
+        {% csrf_token %}
+        <button type="submit" class='btn btn-danger'>Deletar</button>
+      </form>
+    </li>
+    {% empty %}
+      <li>Nenhum aluno encontrado.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
